@@ -1,13 +1,17 @@
 package hhh.zjh.com.myapplication;
 
-import android.os.Bundle;
+import android.os.Bundle;//Oncreate方法用到的;Bundle是将数据传递到另一个上下文中或保存或回复你自己状态的数据存储方式。它的数据不是持久化状态。
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
+import android.util.Log;//打印LOG信息的
+import android.view.View;//引用VIEW用到的，就是视图
+import android.widget.Button;//按键
+import android.widget.EditText;//EditText 相当于很多程序中的TextField，是一个可以让用户输入文本的组件，
+                               // 是用户和程序之间用于传输数据的纽带，通过它用户可以把数据传送给Android程序
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+//implements View.OnClickListener声明实现OnClickListener接口成为监听对象
+//onClick()就是OnClickListener接口中规定必须编写的方法，让MainActivity具备可以处理“单击”事件的能力
+// onClick()在167行重写的
     /**
      * 数字
      */
@@ -24,30 +28,30 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     /**
      * 运算符
      */
-    private Button plus_btn;
-    private Button subtract_btn;
-    private Button multiply_btn;
-    private Button divide_btn;
-    private Button equal_btn;
+    private Button plus_btn;//+
+    private Button subtract_btn;//-
+    private Button multiply_btn;//×
+    private Button divide_btn;//÷
+    private Button equal_btn;//=
     /**
      * 其他
      */
-    private Button dot_btn;
-    private Button percent_btn;
-    private Button delete_btn;
-    private Button ac_btn;
+    private Button dot_btn;//.
+    private Button percent_btn;//%
+    private Button delete_btn;//DEL
+    private Button ac_btn;//AC
     /**
      * 结果
      */
-    private EditText mResultText;
+    private EditText mResultText;//输入输出栏
     /**
      * 已经输入的字符
      */
-    private String existedText = "";
+    private String existedText = "";//定义一个private的string变量用于接受值的输入（用于计算的值和之间操作（+-*/））和输出（计算结果）如,见160~188；见331行
     /**
      * 是否计算过
      */
-    private boolean isCounted = false;
+    private boolean isCounted = false;//当监听到“=”按下时，isCounted为true
     /**
      * 以负号开头，且运算符不是是减号
      * 例如：-21×2
@@ -66,9 +70,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+    protected void onCreate(Bundle savedInstanceState) { //Android 启动任何一个Activity时，它会完成
+                                                         // 一些必要的初始化工作，然后就去调用改Activity的OnCreate（）方法，OnCreate（）是MainActivity第一件要做的事
+        super.onCreate(savedInstanceState);//super就是要指定调用父类的onCreate()，然后调用
+                                           // setContentView()把画面（view）的内容（content）显示出来。其中savedInstanceState是把
+                                           // 当前系统所记载该Activity之前的状态传进来。这是应为onCreate()不一定是程序第一次执行才被调用，
+                                           // 当程序被系统强制停止之后又恢复时也会被调用，此时就要把中断前被系统所保存（save）的执行状态（Instance State）
+                                           //这样可以使那些输入到一半就被中断的数据不会遗失
+        setContentView(R.layout.activity_main);//载入布局文件
 
         initView();  /**初始视图（界面控件）*/
         initEvent();/**初始化新事件对象的属性*/
@@ -81,6 +90,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         /**
          * 数字
          */
+
+        //findViewById():根据指定的资源ID找出对应的View对象，由于findViewById()函数返回的是
+        // View类的对象，因此需要强制转换成组件真正所属的类型，才能使用到组件特有的功能。
+        //所以一下的变量除了result_text是转成EditText，其余的都是转成Button
         num0 = (Button) findViewById(R.id.num_zero);
         num1 = (Button) findViewById(R.id.num_one);
         num2 = (Button) findViewById(R.id.num_two);
@@ -113,13 +126,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         /**
          * 已经输入的字符
          */
-        existedText = mResultText.getText().toString();
+        existedText = mResultText.getText().toString();//.getText()获取用户输入的文字,由于.getText()方法
+        // 返回的是Android SDK中定义的Editable类型的对象，因此要当字符串处理，必须再调用toString()方法进行转换
 
     }
 
     /**
      * 初始化事件
      */
+    //setOnClickListener,登录（set）监听对象，this表示MainActivity对象本身
     private void initEvent() {
         num0.setOnClickListener(this);
         num1.setOnClickListener(this);
