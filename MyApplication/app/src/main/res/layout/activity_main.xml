@@ -19,15 +19,39 @@
         android:singleLine="true"
         android:text="0"
         />
+<!--ableLayout置底，TableRow在TableLayout的上面,而Button、TextView等控件就在TableRow之上，
+    另外，TableLayout之上也可以单独放控件。TableLayout是一个使用复杂的布局，最简单的用法就
+    仅 仅是拖拉控件做出个界面，但实际上，会经常在代码里使用TableLayout做出表格的效果。我这
+    里就是用这种方法做出的一个5*4的表格的，但是0那个按键我做了修改，因为其余按键都是占一个
+    位子的而0这个按键占两个位子所以只要修改语句“android:layout_weight="2"”中的数值，改为2,即可-->
 
+
+    <!--首先建一个TableLayout并设置宽高属性-->
+<!--
+    fill_parent：
+    设置一个构件的布局为fill_parent将强制性地使构件扩展，以填充布局单元内尽可能多的空间。
+    这跟Windows控件的dockstyle属性大体一致。设置一个顶部布局或控件为fill_parent将强制性让它布满整个
+    屏幕。
+
+    wrap_content：
+    设置一个视图的尺寸为wrap_content将强制性地使视图扩展以显示全部内容。以TextView和ImageView控件为
+    例，设置为wrap_content将完整显示其内部的文本和图像。布局元素将根据内容更改大小。 设置一个视图的
+    尺寸为wrap_content大体等同于设置Windows控件的Autosize属性为True。
+
+    match_parent：
+    Android2.2中match_parent和fill_parent是一个意思 .两个参数意思一样，match_parent更贴切，于是从2.2
+    开始两个词都可以用。那么如果考虑低版本的使用情况你就需要用fill_parent了-->
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+      <!--  建议第一个TableRow并设置宽高属性，属性的解释见(本文件的行30~43），第一个TableRow即
+      TableLayout的第一行，其中放置4个按键即为4列，分别为：AC,DEL,%,÷  -->
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-
+            <!-- 每个按键的属性设置成一样（除0）使布局看上去工整简洁-->
+           <!-- 在设置按键id时最好言简意赅，方便实用和记住-->
             <Button
                 android:layout_width="0dp"
                 android:layout_weight="1"
