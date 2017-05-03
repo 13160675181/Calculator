@@ -135,6 +135,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
      * 初始化事件
      */
     //setOnClickListener,登录（set）监听对象，this表示MainActivity对象本身
+    //先找(findViewById)再监听（setOnClickListener）
     private void initEvent() {
         num0.setOnClickListener(this);
         num1.setOnClickListener(this);
@@ -172,7 +173,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
              * 数字
              */
             case R.id.num_zero:
-                existedText = isOverRange(existedText, "0");
+                existedText = isOverRange(existedText, "0");//传值到existedText,但要先通过isOverRange（）对被传值做系列判断；isOverRange（）见行492~585
                 break;
             case R.id.num_one:
                 existedText = isOverRange(existedText, "1");
@@ -297,7 +298,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         }
 
                         if ((existedText.substring(existedText.length() - 1)).equals("+")) {
-                            existedText = existedText.replace("+", "×");
+                            existedText = existedText.replace("+", "×");//替换号
                         } else if ((existedText.substring(existedText.length() - 1)).equals("-")) {
                             existedText = existedText.replace("-", "×");
                         } else if ((existedText.substring(existedText.length() - 1)).equals("÷")) {
