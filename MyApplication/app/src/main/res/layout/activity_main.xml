@@ -10,7 +10,7 @@
         android:id="@+id/result_text"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_weight="0.44"
         android:textSize="30sp"
         android:padding="20dp"
         android:layout_gravity="end"
@@ -19,7 +19,7 @@
         android:singleLine="true"
         android:text="0"
         />
-<!--ableLayout置底，TableRow在TableLayout的上面,而Button、TextView等控件就在TableRow之上，
+<!--TableLayout置底，TableRow在TableLayout的上面,而Button、TextView等控件就在TableRow之上，
     另外，TableLayout之上也可以单独放控件。TableLayout是一个使用复杂的布局，最简单的用法就
     仅 仅是拖拉控件做出个界面，但实际上，会经常在代码里使用TableLayout做出表格的效果。我这
     里就是用这种方法做出的一个5*4的表格的，但是0那个按键我做了修改，因为其余按键都是占一个
